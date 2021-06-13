@@ -24,6 +24,11 @@
 
                 <div class="panel-heading">
                     <h1 class="panel-title">My Categories!</h1>
+                    <div class="col-md-1">
+                        <!--/*@thymesVar id="category" type="com.attractor.shop.entities.Category"*/-->
+                        <a class="btn btn-default" href="#"
+                           th:href="@{'/categories/' + ${category.id} + '/products/new'}" role="button">New product</a>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive" th:if="${not #lists.isEmpty(products)}">
@@ -33,6 +38,8 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>View</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                             </thead>
                             <tr th:remove="all">
@@ -49,7 +56,9 @@
                             <tr th:each="product : ${products}">
                                 <td th:text="${product.id}">334</td>
                                 <td th:text="${product.name}">Tasty Goodnees 3</td>
-                                <td><a href="#" th:href="@{'/categories/' + ${product.category.id} + '/products/'+${product.id}+'/show'}">View Products</a></td>
+                                <td><a href="#" th:href="@{'/categories/' + ${product.category.id} + '/products/'+${product.id}+'/show'}">View</a></td>
+                                <td><a href="#" th:href="@{'/categories/' + ${product.category.id} + '/products/'+${product.id}+'/show'}">Edit</a></td>
+                                <td><a href="#" th:href="@{'/categories/' + ${product.category.id} + '/products/'+${product.id}+'/delete'}">Delete</a></td>
                             </tr>
                         </table>
                     </div>

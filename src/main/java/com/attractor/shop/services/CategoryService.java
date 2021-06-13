@@ -7,10 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 @Slf4j
 @Service
 @AllArgsConstructor
@@ -22,5 +20,11 @@ public class CategoryService {
         categoryRepository.findAll().iterator().forEachRemaining(categoriesSet::add);
         return categoriesSet;
     };
+    public Category getCategoryById(Long id){
+        Optional<Category> category = categoryRepository.findById(id);
+        if (category.isPresent()){
+            return category.get();
+        }else return null;
+    }
 
 }
