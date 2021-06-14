@@ -10,8 +10,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @AllArgsConstructor
@@ -38,8 +41,11 @@ public class ProductController {
         return "product/form";
     }
     @PostMapping("categories/{categoryId}/product")
-    public String saveOrUpdate(@PathVariable String categoryId,@ModelAttribute Product product){
+    public String saveOrUpdate(@PathVariable String categoryId, @Valid @ModelAttribute("product") Product product, BindingResult bindingResult){
         product.setCategory(categoryService.getCategoryById(Long.valueOf(categoryId)));
+        if (bindingResult.hasErrors()){
+            return "product/form";
+        }
         Product savedProduct = productService.saveProduct(product);
         return "redirect:/categories/" + savedProduct.getCategory().getId() + "/products";
     }

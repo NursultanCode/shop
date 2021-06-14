@@ -19,10 +19,10 @@ public class Product extends BaseEntity{
     @NotBlank
     @Size(min = 2,max = 20)
     private String name;
-    @Min(0)
+    @Min(1)
     private float cost;
     private byte[] image;
-    @Min(0)
+    @Min(1)
     private int count;
     @NotBlank
     private String description;
