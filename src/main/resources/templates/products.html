@@ -38,7 +38,6 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>View</th>
-                                <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                             </thead>
@@ -57,7 +56,6 @@
                                 <td th:text="${product.id}">334</td>
                                 <td th:text="${product.name}">Tasty Goodnees 3</td>
                                 <td><a href="#" th:href="@{'/categories/' + ${product.category.id} + '/products/'+${product.id}+'/show'}">View</a></td>
-                                <td><a href="#" th:href="@{'/categories/' + ${product.category.id} + '/products/'+${product.id}+'/show'}">Edit</a></td>
                                 <td><a href="#" th:href="@{'/categories/' + ${product.category.id} + '/products/'+${product.id}+'/delete'}">Delete</a></td>
                             </tr>
                         </table>

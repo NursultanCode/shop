@@ -2,6 +2,7 @@ package com.attractor.shop.services;
 
 import com.attractor.shop.entities.Category;
 import com.attractor.shop.entities.Product;
+import com.attractor.shop.exceptions.NotFoundException;
 import com.attractor.shop.repositories.CategoryRepository;
 import com.attractor.shop.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ public class ProductService {
         Optional<Product> product = productRepository.findById(id);
         if (product.isPresent()){
             return product.get();
-        }else return null;
+        }else throw new NotFoundException("Product not found");
     }
     public List<Product> getProducts(Long categoryId){
         log.debug("I'm in service");
