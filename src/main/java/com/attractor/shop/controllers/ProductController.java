@@ -3,15 +3,15 @@ package com.attractor.shop.controllers;
 import com.attractor.shop.dto.ProductDto;
 import com.attractor.shop.entities.Category;
 import com.attractor.shop.entities.Product;
+import com.attractor.shop.exceptions.NotFoundException;
 import com.attractor.shop.services.CategoryService;
 import com.attractor.shop.services.ProductService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @AllArgsConstructor
@@ -50,5 +50,13 @@ public class ProductController {
                 productService.deleteById(Long.valueOf(categoryId),Long.valueOf(id));
         return "redirect:/categories/" + categoryId + "/products";
 
+    }
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public ModelAndView handleNotFound(Exception e){
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("404error");
+            modelAndView.addObject("exception", e);
+            return modelAndView;
     }
 }
