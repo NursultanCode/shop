@@ -64,8 +64,8 @@
                             </tr>
                         </table>
                     </div>
-                    <a href="#"  th:href="'/categories/'+${category.id}+'/products?page='+${pages.getPageNumber()-1}+'&size=2'"> <==</a>
-                    <a href="#" th:if="${pages.getPageNumber()<pages.getPageSize()}" th:href="${pages.getPageNumber()<pages.getPageSize()}?'/categories/'+${category.id}+'/products?page='+${pages.getPageNumber()+1}+'&size=2'">==> </a>
+                    <a href="#"  th:href="'/categories/'+${category.id}+'/products?page='+${pages.getPageNumber()-1}+'&size=5'"> <==</a>
+                    <a href="#" th:if="${pages.getPageNumber()<products.size()/5+1}" th:href="${pages.getPageNumber()<products.size()/5+1}?'/categories/'+${category.id}+'/products?page='+${pages.getPageNumber()+1}+'&size=5'">==> </a>
                 </div>
             </div>
         </div>

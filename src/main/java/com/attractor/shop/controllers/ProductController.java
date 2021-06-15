@@ -27,7 +27,7 @@ public class ProductController {
     private final CategoryService categoryService;
     private final ProductService productService;
     @GetMapping("/categories/{categoryId}/products")
-    public String getProducts(@PathVariable String categoryId, Model model,@PageableDefault(value = 2) Pageable pageable){
+    public String getProducts(@PathVariable String categoryId, Model model,@PageableDefault(value = 5) Pageable pageable){
         final Page<Product> products = productService.getProductsPage(pageable,Long.valueOf(categoryId));
         model.addAttribute("products", products.getContent());
         model.addAttribute("pages",products.getPageable());
