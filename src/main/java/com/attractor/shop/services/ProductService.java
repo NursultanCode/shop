@@ -54,6 +54,6 @@ public class ProductService {
     }
 
     public List<Product> getFilter(FilterDto filterDto) {
-        return productRepository.findAllByNameContainingAndCostGreaterThanEqualAndCostLessThanEqual(filterDto.getName(),);
+        return productRepository.findAllByNameContaining(filterDto.getName());
     }
 }

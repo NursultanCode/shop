@@ -27,12 +27,6 @@
                     <form style="color: black" th:action="'/categories/'+${category.id}+'/products/filter'" method="get" modelAttribute="filter">
                         <input name="name" type="text" path="name">
                         <input type="submit" value="Serach">
-                        <br>
-                        minimum cost
-                            <input type="number" name="minNum" path="minNum">
-                        maximum cost
-                            <input type="number" name="maxNum" path="maxNum">
-
                     </form>
                     <div>
                         <!--/*@thymesVar id="category" type="com.attractor.shop.entities.Category"*/-->

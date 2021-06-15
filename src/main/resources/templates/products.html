@@ -24,7 +24,7 @@
 
                 <div class="panel-heading">
                     <h1 class="panel-title">My Products!</h1>
-                    <form th:action="'/categories/'+${category.id}+'/products/filter'" method="get" modelAttribute="filter">
+                    <form style="color: black" th:action="'/categories/'+${category.id}+'/products/filter'" method="get" modelAttribute="filter">
                         <input name="name" type="text" path="name">
                         <input type="submit" value="Serach">
                     </form>

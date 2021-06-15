@@ -7,5 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class FilterDto {
     private String name;
+    private float minNum;
+    private float maxNum;
 }
 
