@@ -49,8 +49,8 @@ public class ProductService {
         }
     }
 
-    public Page<Product> getProductsPage(Pageable pageable) {
-        return productRepository.findAll(pageable);
+    public Page<Product> getProductsPage(Pageable pageable, Long categoryId) {
+        return productRepository.findAllByCategoryId(pageable, categoryId);
     }
 
     public List<Product> getFilter(FilterDto filterDto) {

@@ -1,6 +1,8 @@
 package com.attractor.shop.repositories;
 
 import com.attractor.shop.entities.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.validation.constraints.Min;
@@ -12,5 +14,6 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> getProductByCategory_Id(Long categoryId);
     List<Product> findAllByNameContaining(String name);
+    Page<Product> findAllByCategoryId(Pageable page, Long id);
     List<Product> findAllByNameContainingAndCostGreaterThanEqualAndCostLessThanEqual(@NotBlank @Size(min = 2, max = 20) String name, @Min(1) float costMin, @Min(1) float costMax);
 }
