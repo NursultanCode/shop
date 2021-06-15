@@ -1,5 +1,6 @@
 package com.attractor.shop.controllers;
 
+import com.attractor.shop.dto.FilterDto;
 import com.attractor.shop.dto.ProductDto;
 import com.attractor.shop.entities.Category;
 import com.attractor.shop.entities.Product;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -61,6 +63,14 @@ public class ProductController {
                 productService.deleteById(Long.valueOf(categoryId),Long.valueOf(id));
         return "redirect:/categories/" + categoryId + "/products";
 
+    }
+
+    @GetMapping("categories/{categoryId}/products/filter")
+    public String getFilter(@PathVariable String categoryId, @ModelAttribute FilterDto filterDto,Model model){
+        List<Product> products = productService.getFilter(filterDto);
+        model.addAttribute("products",products);
+        model.addAttribute("category",categoryService.getCategoryById(Long.valueOf(categoryId)));
+        return "filter";
     }
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)

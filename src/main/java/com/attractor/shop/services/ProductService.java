@@ -1,5 +1,6 @@
 package com.attractor.shop.services;
 
+import com.attractor.shop.dto.FilterDto;
 import com.attractor.shop.entities.Category;
 import com.attractor.shop.entities.Product;
 import com.attractor.shop.exceptions.NotFoundException;
@@ -50,5 +51,9 @@ public class ProductService {
 
     public Page<Product> getProductsPage(Pageable pageable) {
         return productRepository.findAll(pageable);
+    }
+
+    public List<Product> getFilter(FilterDto filterDto) {
+        return productRepository.findAllByNameContainingAndCostGreaterThanEqualAndCostLessThanEqual(filterDto.getName(),);
     }
 }

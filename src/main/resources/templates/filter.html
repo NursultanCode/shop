@@ -24,9 +24,15 @@
 
                 <div class="panel-heading">
                     <h1 class="panel-title">My Products!</h1>
-                    <form th:action="'/categories/'+${category.id}+'/products/filter'" method="get" modelAttribute="filter">
+                    <form style="color: black" th:action="'/categories/'+${category.id}+'/products/filter'" method="get" modelAttribute="filter">
                         <input name="name" type="text" path="name">
                         <input type="submit" value="Serach">
+                        <br>
+                        minimum cost
+                            <input type="number" name="minNum" path="minNum">
+                        maximum cost
+                            <input type="number" name="maxNum" path="maxNum">
+
                     </form>
                     <div>
                         <!--/*@thymesVar id="category" type="com.attractor.shop.entities.Category"*/-->
@@ -64,13 +70,20 @@
                             </tr>
                         </table>
                     </div>
-                    <a href="#"  th:href="'/categories/'+${category.id}+'/products?page='+${pages.getPageNumber()-1}+'&size=2'"> <==</a>
-                    <a href="#" th:if="${pages.getPageNumber()<pages.getPageSize()}" th:href="${pages.getPageNumber()<pages.getPageSize()}?'/categories/'+${category.id}+'/products?page='+${pages.getPageNumber()+1}+'&size=2'">==> </a>
-                </div>
+                    </div>
             </div>
         </div>
     </div>
 </div>
-
+<script>
+    function myFunction() {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
 </body>
 </html>
