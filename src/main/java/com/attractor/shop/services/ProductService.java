@@ -7,6 +7,8 @@ import com.attractor.shop.repositories.CategoryRepository;
 import com.attractor.shop.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -44,5 +46,9 @@ public class ProductService {
             }
 
         }
+    }
+
+    public Page<Product> getProductsPage(Pageable pageable) {
+        return productRepository.findAll(pageable);
     }
 }

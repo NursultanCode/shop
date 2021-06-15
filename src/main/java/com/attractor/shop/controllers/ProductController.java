@@ -7,6 +7,9 @@ import com.attractor.shop.exceptions.NotFoundException;
 import com.attractor.shop.services.CategoryService;
 import com.attractor.shop.services.ProductService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +25,10 @@ public class ProductController {
     private final CategoryService categoryService;
     private final ProductService productService;
     @GetMapping("/categories/{categoryId}/products")
-    public String getProducts(@PathVariable String categoryId,Model model){
-        model.addAttribute("products", productService.getProducts(Long.valueOf(categoryId)));
+    public String getProducts(@PathVariable String categoryId, Model model,@PageableDefault(value = 2) Pageable pageable){
+        final Page<Product> products = productService.getProductsPage(pageable);
+        model.addAttribute("products", products.getContent());
+        model.addAttribute("pages",products.getPageable());
         model.addAttribute("category",categoryService.getCategoryById(Long.valueOf(categoryId)));
         return "products";
     }

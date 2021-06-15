@@ -60,6 +60,8 @@
                             </tr>
                         </table>
                     </div>
+                    <a href="#"  th:href="'/categories/'+${category.id}+'/products?page='+${pages.getPageNumber()-1}+'&size=2'"> <==</a>
+                    <a href="#" th:if="${pages.getPageNumber()<pages.getPageSize()}" th:href="${pages.getPageNumber()<pages.getPageSize()}?'/categories/'+${category.id}+'/products?page='+${pages.getPageNumber()+1}+'&size=2'">==> </a>
                 </div>
             </div>
         </div>
