@@ -1,5 +1,6 @@
 package com.attractor.shop.controllers;
 
+import com.attractor.shop.entities.UserRegisterForm;
 import com.attractor.shop.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class FrontendController {
     @GetMapping("/register")
     public String pageRegisterUser(Model model){
         if (!model.containsAttribute("dto")){
-            model.addAttribute("dto",new UserRegisterForm);
+            model.addAttribute("dto",new UserRegisterForm());
         }
         return "register";
     }
@@ -37,7 +38,7 @@ public class FrontendController {
     public String registerPage(@Valid UserRegisterForm userRequestDto,
                                BindingResult validationResult,
                                RedirectAttributes attributes){
-        attributes.addFlashAttribute("dro", userRequestDto);
+        //attributes.addFlashAttribute("dro", userRequestDto);
         if (validationResult.hasFieldErrors()){
             attributes.addFlashAttribute("errors", validationResult.getFieldErrors());
                 return "redirect:/register";
