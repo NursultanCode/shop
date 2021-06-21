@@ -1,10 +1,15 @@
 package com.attractor.shop.services;
 
+import com.attractor.shop.entities.User;
+import com.attractor.shop.entities.UserRegisterForm;
+import com.attractor.shop.entities.UserResponseDto;
+import com.attractor.shop.exceptions.CustomerNotFoundException;
 import com.attractor.shop.repositories.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+@Slf4j
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -12,12 +17,13 @@ public class UserService {
     private final UserRepository repository;
     private final PasswordEncoder encoder;
 
-    public CustomerResponseDTO register(CustomerRegisterForm form) {
+    public UserResponseDto register(UserRegisterForm form) {
         if (repository.existsByEmail(form.getEmail())) {
-            throw new CustomerAlreadyRegisteredException();
+            //throw new CustomerAlreadyRegisteredException();
+            log.error("Customer already registered");
         }
 
-        var user = Customer.builder()
+        var user = User.builder()
                 .email(form.getEmail())
                 .fullname(form.getName())
                 .password(encoder.encode(form.getPassword()))
@@ -25,13 +31,13 @@ public class UserService {
 
         repository.save(user);
 
-        return CustomerResponseDTO.from(user);
+        return UserResponseDto.from(user);
     }
 
-    public CustomerResponseDTO getByEmail(String email) {
+    public UserResponseDto getByEmail(String email) {
         var user = repository.findByEmail(email)
                 .orElseThrow(CustomerNotFoundException::new);
 
-        return CustomerResponseDTO.from(user);
+        return UserResponseDto.from(user);
     }
 }

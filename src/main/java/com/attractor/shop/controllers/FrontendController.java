@@ -24,15 +24,15 @@ public class FrontendController {
     public String pageUserProfile(Model model, Principal principal){
         var user = userService.getByEmail(principal.getName());
         model.addAttribute("dto",user);
-        return "profile";
+        return "profile.html";
     }
 
     @GetMapping("/register")
     public String pageRegisterUser(Model model){
-        if (!model.containsAttribute("dto")){
-            model.addAttribute("dto",new UserRegisterForm());
+        if (!model.containsAttribute("user")){
+            model.addAttribute("user",new UserRegisterForm());
         }
-        return "register";
+        return "register.html";
     }
     @PostMapping("/register")
     public String registerPage(@Valid UserRegisterForm userRequestDto,
@@ -46,9 +46,10 @@ public class FrontendController {
         userService.register(userRequestDto);
         return "redirect:/login";
         }
+
         @GetMapping("/login")
         public String loginPage(@RequestParam(required = false, defaultValue = "false")Boolean error, Model model){
             model.addAttribute("error", error);
-            return "login";
+            return "login.html";
         }
     }

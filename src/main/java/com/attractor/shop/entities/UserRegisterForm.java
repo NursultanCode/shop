@@ -1,6 +1,5 @@
 package com.attractor.shop.entities;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
