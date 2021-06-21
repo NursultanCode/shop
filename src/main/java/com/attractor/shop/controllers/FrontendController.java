@@ -32,13 +32,13 @@ public class FrontendController {
         if (!model.containsAttribute("user")){
             model.addAttribute("user",new UserRegisterForm());
         }
-        return "register.html";
+        return "register";
     }
     @PostMapping("/register")
     public String registerPage(@Valid UserRegisterForm userRequestDto,
                                BindingResult validationResult,
                                RedirectAttributes attributes){
-        //attributes.addFlashAttribute("dro", userRequestDto);
+        attributes.addFlashAttribute("user", userRequestDto);
         if (validationResult.hasFieldErrors()){
             attributes.addFlashAttribute("errors", validationResult.getFieldErrors());
                 return "redirect:/register";

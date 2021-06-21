@@ -7,14 +7,14 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder(access = AccessLevel.PACKAGE)
 public class UserResponseDto {
-    private int id;
-    private String fullname;
+    private Long id;
+    private String name;
     private String email;
 
     public static UserResponseDto from(User user) {
         return builder()
                 .id(user.getId())
-                .fullname(user.getFullname())
+                .name(user.getName())
                 .email(user.getEmail())
                 .build();
     }

@@ -3,7 +3,7 @@
 <body>
 <h1>form</h1>
 <!--/*@thymesVar id="user" type="com.attractor.shop.entities.UserRegisterForm"*/-->
-<form action="@{/register}" th:object="${user}" method="POST">
+<form th:action="@{/register}" th:object="${user}" method="post">
     <div>
         <label>Name</label>
         <input th:field="*{name}"/>

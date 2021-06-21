@@ -18,14 +18,14 @@ public class UserService {
     private final PasswordEncoder encoder;
 
     public UserResponseDto register(UserRegisterForm form) {
-        if (repository.existsByEmail(form.getEmail())) {
+        //if (repository.existsByEmail(form.getEmail())) {
             //throw new CustomerAlreadyRegisteredException();
-            log.error("Customer already registered");
-        }
+          //  log.error("Customer already registered");
+        //}
 
         var user = User.builder()
                 .email(form.getEmail())
-                .fullname(form.getName())
+                .name(form.getName())
                 .password(encoder.encode(form.getPassword()))
                 .build();
 

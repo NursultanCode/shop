@@ -8,16 +8,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Data
-@Table(name="users")
 @Entity
 @Builder
 @NoArgsConstructor
+@Table(name="users")
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+public class User extends BaseEntity{
     @Email
     @NotBlank
     @Size(min = 1, max = 128)
@@ -32,7 +28,7 @@ public class User {
     @NotBlank
     @Size(min = 1, max = 128)
     @Column(length = 128)
-    private String fullname;
+    private String name;
 
     @Column
     @Builder.Default
