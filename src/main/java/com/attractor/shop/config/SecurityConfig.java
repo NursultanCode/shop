@@ -48,8 +48,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 + " from users"
                 + " where email = ?";
 
+        String fetchRolesQuery = "select email, role"
+                + " from users"
+                + " where email = ?";
+
         auth.jdbcAuthentication()
                 .usersByUsernameQuery(fetchUsersQuery)
+                .authoritiesByUsernameQuery(fetchUsersQuery)
                 .dataSource(dataSource);
     }
 }

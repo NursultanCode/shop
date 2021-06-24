@@ -23,8 +23,8 @@ public class FrontendController {
     @GetMapping("/profile")
     public String pageUserProfile(Model model, Principal principal){
         var user = userService.getByEmail(principal.getName());
-        model.addAttribute("dto",user);
-        return "profile.html";
+        model.addAttribute("user",user);
+        return "profile";
     }
 
     @GetMapping("/register")
@@ -50,6 +50,6 @@ public class FrontendController {
         @GetMapping("/login")
         public String loginPage(@RequestParam(required = false, defaultValue = "false")Boolean error, Model model){
             model.addAttribute("error", error);
-            return "login.html";
+            return "login";
         }
     }

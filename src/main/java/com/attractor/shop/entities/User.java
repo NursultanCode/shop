@@ -28,7 +28,7 @@ public class User extends BaseEntity{
     @NotBlank
     @Size(min = 1, max = 128)
     @Column(length = 128)
-    private String name;
+    private String fullname;
 
     @Column
     @Builder.Default

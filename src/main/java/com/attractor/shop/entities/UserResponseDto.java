@@ -8,13 +8,13 @@ import lombok.*;
 @Builder(access = AccessLevel.PACKAGE)
 public class UserResponseDto {
     private Long id;
-    private String name;
+    private String fullname;
     private String email;
 
     public static UserResponseDto from(User user) {
         return builder()
                 .id(user.getId())
-                .name(user.getName())
+                .fullname(user.getFullname())
                 .email(user.getEmail())
                 .build();
     }

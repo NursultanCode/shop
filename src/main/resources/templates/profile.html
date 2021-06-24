@@ -1,13 +1,13 @@
-<#import "partials/main.ftlh" as main />
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login page</title>
+</head>
+<body>
+<h1>Profile page</h1>
 
-<@main.renderWith>
-    <#if dto??>
-        <h1>Ваши учетные данные!</h1>
-        <p>${(dto.fullname)!'-- missing --'} - ${(dto.email)!'-- email missing --'}</p>
-    <#else>
-        <h1>Пользователь не найден!</h1>
-    </#if>
-    <div class="bottom-box">
-        <a href="/">На главную страницу</a>
-    </div>
-</@main.renderWith>
+<!--/*@thymesVar id="user" type="com.attractor.shop.entities.UserResponseDto"*/-->
+<p th:text="${user.email}"></p>
+
+</body>
+</html>
